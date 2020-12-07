@@ -303,6 +303,9 @@ net.ipv4.ip_forward = 1">>/etc/sysctl.conf
 	echo "*               soft    nofile           1000000
 *               hard    nofile          1000000">/etc/security/limits.conf
 	echo "ulimit -SHn 1000000">>/etc/profile
+	echo "DefaultLimitCORE=infinity" >> /etc/systemd/system.conf
+	echo "DefaultLimitNOFILE=102400" >> /etc/systemd/system.conf
+	echo "DefaultLimitNPROC=102400" >> /etc/systemd/system.conf
 	read -p "需要重启VPS后，才能生效系统优化配置，是否现在重启 ? [Y/n] :" yn
 	[ -z "${yn}" ] && yn="y"
 	if [[ $yn == [Yy] ]]; then
