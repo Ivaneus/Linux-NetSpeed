@@ -306,7 +306,7 @@ net.ipv4.ip_forward = 1">>/etc/sysctl.conf
 	echo "DefaultLimitCORE=infinity" >> /etc/systemd/system.conf
 	echo "DefaultLimitNOFILE=102400" >> /etc/systemd/system.conf
 	echo "DefaultLimitNPROC=102400" >> /etc/systemd/system.conf
-	read -p "需要重启VPS后，才能生效系统优化配置，是否现在重启 ? [Y/n] :" yn
+	read -p "连接数限制优化完毕，需要重启VPS后，才能生效系统优化配置，是否现在重启 ? [Y/n] :" yn
 	[ -z "${yn}" ] && yn="y"
 	if [[ $yn == [Yy] ]]; then
 		echo -e "${Info} VPS 重启中..."
