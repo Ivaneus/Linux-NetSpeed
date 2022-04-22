@@ -13,7 +13,7 @@ UA_Browser="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 function MediaUnlockTest_Tiktok_Region(){
     echo "Welcome to using Tiktok Region Checker !";
-    echo -n -e " Tiktok Region:\t\t${Font_Green}Checking...${Font_Suffix}\c";
+    echo -n -e " Tiktok Region:\t\tChecking...\c";
     
     local Ftmpresult=$(curl -${1} --user-agent "${UA_Browser}" -s --max-time 10 "https://www.tiktok.com/")
 
