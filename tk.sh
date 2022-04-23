@@ -18,7 +18,7 @@ function MediaUnlockTest_Tiktok_Region(){
     local Ftmpresult=$(curl -${1} --user-agent "${UA_Browser}" -s --max-time 10 "https://www.tiktok.com/")
 
 	if [[ "$Ftmpresult" = "curl"* ]]; then
-		echo -n -e "\r Tiktok Region:\t\t${Font_Red}Failed (Network Connection Problem)${Font_Suffix}\n"
+		echo "\r Tiktok Region:\t\t${Font_Red}Failed (Network Connection Problem)${Font_Suffix}\n"
 		return;
 	fi	
 	local FRegion=$(echo $Ftmpresult | grep '"$region":"' | sed 's/.*"$region//' | cut -f3 -d'"')
