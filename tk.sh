@@ -10,15 +10,43 @@ Font_White="\033[37m"
 Font_Suffix="\033[0m"
 
 UA_Browser="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
+ipv4=$(curl -s "http://api4.ipify.org")
+country=$(curl -s "http://ip-api.com/line/${ipv4}?fields=country")
+city=$(curl -s "http://ip-api.com/line/${ipv4}?fields=city")
+isp=$(curl -s "http://ip-api.com/line/${ipv4}?fields=isp")
+countryCode=$(curl -s "http://ip-api.com/line/${ipv4}?fields=countryCode")
+if [[ "$region" = "GB" ]]; then
+   region="UK"
+fi
+whois=$(curl -s "https://www.whois.com/whois/185.215.226.127" | grep "country" | sed s/[[:space:]]//g | cut -f2 -d ":")
 
-function MediaUnlockTest_Tiktok_Region(){
-    echo "Welcome to using Tiktok Region Checker !";
-    echo " Tiktok Region:\t\tChecking...\c";
-    
-    local Ftmpresult=$(curl -${1} --user-agent "${UA_Browser}" -s --max-time 10 "https://www.tiktok.com/")
+function Tiktok_Region_Checker(){
+    echo  -e "${Font_SkyBlue} Welcome to using Tiktok Region Checker !\n${Font_Suffix}";
+    echo  -e " Author: ${Font_Blue} ivaneus (Wechat ID)${Font_Suffix}";
+    echo  -e "-----------------------------------------";
+    echo  -e " Your IP Information";
+    echo  -e " IP Address: ${Font_Green}${ipv4}${Font_Suffix}";
+    echo  -e " Country: ${Font_Green}${country}${Font_Suffix}";
+    echo  -e " City: ${Font_Green}${city}${Font_Suffix}";
+    echo  -e " ISP Provider: ${Font_Green}${isp}${Font_Suffix}";
+    echo  -e " IP CountryCode: ${Font_SkyBlue}${countryCode}${Font_Suffix}";    
+    echo  -e " Whois IP Region: ${Font_Green}${whois}${Font_Suffix}";
+    if [[ "$whois" != "$countryCode" ]]; then
+    echo  -e " Mention: Your IP Possible Not Original Address!";
+    else
+    echo  -e " Mention: Your IP Perfectyl Is Original Address!";
+    fi   
+    echo  -e "-----------------------------------------";
+    echo  -e "${Font_Yellow} Tiktok Region Checking${Font_Suffix}";
+    echo  -e " Please Wait Patiently...";
+
+    local Ftmpresult=$(curl -${1} --user-agent "${UA_Browser}" -s --max-time 10 "https://www.tiktok.com/about/contact?lang=en/")
 
 	if [[ "$Ftmpresult" = "curl"* ]]; then
-		echo "\r Tiktok Region:\t\t${Font_Red}Failed (Network Connection Problem)${Font_Suffix}\n"
+		echo -e "\r Tiktok Region:\t\t${Font_Red}Failed (Network Connection Problem)${Font_Suffix}"
+		echo "Region check failed, Please ensure your network is up and try again!"	
+		echo -e "-----------------------------------------\n"
+	     echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"	
 		return;
 	fi	
 	local FRegion=$(echo $Ftmpresult | grep '"$region":"' | sed 's/.*"$region//' | cut -f3 -d'"')
@@ -26,19 +54,25 @@ function MediaUnlockTest_Tiktok_Region(){
        FRegion="UK"
     fi
     if [ -n "$FRegion" ];then
-        echo -n -e "\r Tiktok Region:\t\t${Font_Green}${FRegion}${Font_Suffix}\n"
+        echo -e "\r Tiktok Region:\t\t${Font_Green}${FRegion}${Font_Suffix}"      
+        echo -e "-----------------------------------------\n"
+        echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"
         return;
 	fi
-
-	local STmpresult=$(curl -${1} --user-agent "${UA_Browser}" -s --max-time 10 -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9" -H "Accept-Encoding: gzip" -H "Accept-Language: en"  "https://www.tiktok.com" | gunzip 2> /dev/null)
+	local STmpresult=$(curl -${1} --user-agent "${UA_Browser}" -s --max-time 10 -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9" -H "Accept-Encoding: gzip" -H "Accept-Language: en"  "https://www.tiktok.com/about/contact?lang=en" | gunzip 2> /dev/null)
 	local SRegion=$(echo $STmpresult | grep '"$region":"' | sed 's/.*"$region//' | cut -f3 -d'"')
 	if [ -n "$SRegion" ];then
-        echo -n -e "\r Tiktok Region:\t\t${Font_Yellow}${SRegion} (Possible IDC IP)${Font_Suffix}\n"
+        echo -n -e "\r Tiktok Region:\t\t${Font_Yellow}${SRegion} (Possible IDC IP)${Font_Suffix}"
+        echo -e "-----------------------------------------\n"
+        echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"
         return;
 	else	
-		echo -n -e "\r Tiktok Region:\t\t${Font_Red}Failed(Tiktok Block/Unrecognized Your IP)${Font_Suffix}\n"
+		echo -n -e "\r Tiktok Region:\t\t${Font_Red}Failed(Tiktok Block/Unrecognized Your IP )${Font_Suffix}"
+		echo " Region check failed, Please ensure your network is up and try again!"
+		echo -e "-----------------------------------------\n"
+		echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"	
 		return;
     fi
-
+    
 }
-MediaUnlockTest_Tiktok_Region 4
+Tiktok_Region_Checker 4
