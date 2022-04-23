@@ -20,8 +20,7 @@ fi
 whois=$(curl -s "https://www.whois.com/whois/185.215.226.127" | grep "country" | sed s/[[:space:]]//g | cut -f2 -d ":")
 
 function Tiktok_Region_Checker(){
-    echo  -e "${Font_SkyBlue} Welcome to using Tiktok Region Checker !\n${Font_Suffix}";
-    echo  -e " Author: ${Font_Blue} ivaneus (Wechat ID)${Font_Suffix}";
+    echo  -e "${Font_SkyBlue} Welcome to using Tiktok Region Checker !${Font_Suffix}";
     echo  -e "-----------------------------------------";
     echo  -e " Your IP Information";
     echo  -e " IP Address: ${Font_Green}${ipv4}${Font_Suffix}";
@@ -31,9 +30,9 @@ function Tiktok_Region_Checker(){
     echo  -e " IP CountryCode: ${Font_SkyBlue}${countryCode}${Font_Suffix}";    
     echo  -e " Whois IP Region: ${Font_Green}${whois}${Font_Suffix}";
     if [[ "$whois" != "$countryCode" ]]; then
-    echo  -e " Mention: Your IP Possible Not Original Address!";
+    echo  -e "${Font_Yellow} Mention: Your IP Possible Not Original Address!${Font_Suffix}";
     else
-    echo  -e " Mention: Your IP Perfectyl Is Original Address!";
+    echo  -e "${Font_Yellow} Mention: Your IP Perfectyl Is Original Address!${Font_Suffix}";
     fi   
     echo  -e "-----------------------------------------";
     echo  -e "${Font_Yellow} Tiktok Region Checking${Font_Suffix}";
@@ -44,7 +43,8 @@ function Tiktok_Region_Checker(){
 	if [[ "$Ftmpresult" = "curl"* ]]; then
 		echo -e "\r Tiktok Region:\t\t${Font_Red}Failed (Network Connection Problem)${Font_Suffix}"
 		echo "Region check failed, Please ensure your network is up and try again!"	
-		echo -e "-----------------------------------------\n"
+		echo -e "-----------------------------------------"
+		echo -e " Author: ${Font_Blue} ivaneus (Wechat ID)${Font_Suffix}";
 	     echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"	
 		return;
 	fi	
@@ -53,22 +53,25 @@ function Tiktok_Region_Checker(){
        FRegion="UK"
     fi
     if [ -n "$FRegion" ];then
-        echo -e "\r Tiktok Region:\t${Font_Green}${FRegion}${Font_Suffix}"      
-        echo -e "-----------------------------------------\n"
+        echo -e "\r Tiktok Region:\t${Font_Green}${FRegion} (Great Tiktok IP)${Font_Suffix}"      
+        echo -e "-----------------------------------------"
+        echo -e " Author: ${Font_Blue} ivaneus (Wechat ID)${Font_Suffix}";               
         echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"
         return;
 	fi
 	local STmpresult=$(curl -${1} --user-agent "${UA_Browser}" -s --max-time 10 -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9" -H "Accept-Encoding: gzip" -H "Accept-Language: en"  "https://www.tiktok.com/" | gunzip 2> /dev/null)
 	local SRegion=$(echo $STmpresult | grep '"$region":"' | sed 's/.*"$region//' | cut -f3 -d'"')
 	if [ -n "$SRegion" ];then
-        echo -e "\r Tiktok Region:\t${Font_Yellow}${SRegion} (Possible IDC IP)${Font_Suffix}"
-        echo -e "-----------------------------------------\n"
+        echo -e "\r Tiktok Region:\t${Font_Yellow}${SRegion} (Possible Already Abused)${Font_Suffix}"
+        echo -e "-----------------------------------------"
+        echo -e " Author: ${Font_Blue} ivaneus (Wechat ID)${Font_Suffix}";
         echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"
         return;
 	else	
 		echo -n -e "\r Tiktok Region:\t\t${Font_Red}Failed(Tiktok Block/Unrecognized Your IP )${Font_Suffix}"
 		echo " Region check failed, Please ensure your network is up and try again!"
-		echo -e "-----------------------------------------\n"
+		echo -e "-----------------------------------------"
+		echo -e " Author: ${Font_Blue} ivaneus (Wechat ID)${Font_Suffix}";
 		echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"	
 		return;
     fi
