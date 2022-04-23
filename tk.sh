@@ -1,4 +1,3 @@
-
 Font_Black="\033[30m"
 Font_Red="\033[31m"
 Font_Green="\033[32m"
@@ -54,7 +53,7 @@ function Tiktok_Region_Checker(){
        FRegion="UK"
     fi
     if [ -n "$FRegion" ];then
-        echo -e "\r Tiktok Region:\t\t${Font_Green}${FRegion}${Font_Suffix}"      
+        echo -e "\r Tiktok Region:\t${Font_Green}${FRegion}${Font_Suffix}"      
         echo -e "-----------------------------------------\n"
         echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"
         return;
@@ -62,7 +61,7 @@ function Tiktok_Region_Checker(){
 	local STmpresult=$(curl -${1} --user-agent "${UA_Browser}" -s --max-time 10 -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9" -H "Accept-Encoding: gzip" -H "Accept-Language: en"  "https://www.tiktok.com/" | gunzip 2> /dev/null)
 	local SRegion=$(echo $STmpresult | grep '"$region":"' | sed 's/.*"$region//' | cut -f3 -d'"')
 	if [ -n "$SRegion" ];then
-        echo -n -e "\r Tiktok Region:\t\t${Font_Yellow}${SRegion} (Possible IDC IP)${Font_Suffix}"
+        echo -e "\r Tiktok Region:\t${Font_Yellow}${SRegion} (Possible IDC IP)${Font_Suffix}"
         echo -e "-----------------------------------------\n"
         echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"
         return;
