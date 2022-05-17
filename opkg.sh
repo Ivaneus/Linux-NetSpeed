@@ -1,3 +1,4 @@
+#!/bin/sh /etc/rc.common
 opkg update
 opkg install boost
 opkg install boost-system
