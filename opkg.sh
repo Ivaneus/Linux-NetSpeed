@@ -11,8 +11,9 @@ opkg install liblua5.1.5
 opkg install liblua5.3-5.3
 opkg install unzip
 opkg install wget
+opkg install grep
 rm -rf /tmp/yilai
-make dir -p /tmp/yilai
+mkdir /tmp/yilai
 cd /tmp/yilai
 curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep brook | grep -v luci-app) -o brook.ipk
 curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep chinadns-ng | grep -v luci-app) -o chinadns-ng.ipk
