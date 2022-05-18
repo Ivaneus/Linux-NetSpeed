@@ -14,30 +14,30 @@ opkg install wget
 rm -rf /tmp/yilai
 make dir -p /tmp/yilai
 cd /tmp/yilai
-wget https://op.supes.top/packages/x86_64/brook_20210701-22__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/chinadns-ng_1.0-beta.25-20__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/dns2socks_2.1-10__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/ipt2socks_1.1.3-12__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/kcptun-client_20210922-10__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/microsocks_1.0.2-20__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/naiveproxy_97.0.4692.71-2-49__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/pdnsd-alt_1.2.9b-par-18__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/shadowsocks-libev-ss-server_3.3.5-5__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/shadowsocksr-libev-ssr-local_2.5.6-35__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/shadowsocksr-libev-ssr-nat_2.5.6-35__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/shadowsocksr-libev-ssr-redir_2.5.6-35__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/shadowsocksr-libev-ssr-server_2.5.6-35__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/simple-obfs_0.0.5-13__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/ssocks_0.0.14-15__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/ssocksd_0.0.14-15__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/tcping_0.3-21__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/trojan-go_0.10.6-20__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/trojan-plus_10.0.3-9__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/trojan_1.16.0-8__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/v2ray-core_4.44.0-37__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/v2ray-plugin_5.0.2-56__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/xray-core_1.5.3-37__x86_64.ipk
-wget https://op.supes.top/packages/x86_64/xray-plugin_1.5.3-32__x86_64.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep brook | grep -v luci-app) -o brook.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep chinadns-ng | grep -v luci-app) -o chinadns-ng.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep dns2socks | grep -v luci-app) -o dns2socks.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep ipt2socks | grep -v luci-app) -o ipt2socks.ipk
+curl https://mirrors.cloud.tencent.com/openwrt/releases/packages-22.03/x86_64/packages/$(curl -L -s https://mirrors.cloud.tencent.com/openwrt/releases/packages-22.03/x86_64/packages | grep -oP '(?<=a href=").*(?=">)' | grep kcptun-client | grep -v luci-app) -o kcptun-client.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep microsocks | grep -v luci-app) -o microsocks.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep naiveproxy | grep -v luci-app) -o naiveproxy.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep pdnsd-alt | grep -v luci-app) -o pdnsd-alt.ipk
+curl https://mirrors.cloud.tencent.com/openwrt/releases/packages-22.03/x86_64/packages/$(curl -L -s https://mirrors.cloud.tencent.com/openwrt/releases/packages-22.03/x86_64/packages | grep -oP '(?<=a href=").*(?=">)' | grep shadowsocks-libev-ss-server | grep -v luci-app)  -o  shadowsocks-libev-ss-server.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep shadowsocksr-libev-ssr-local | grep -v luci-app) -o shadowsocksr-libev-ssr-local.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep shadowsocksr-libev-ssr-nat | grep -v luci-app) -o shadowsocksr-libev-ssr-nat.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep shadowsocksr-libev-ssr-redir | grep -v luci-app) -o shadowsocksr-libev-ssr-redir.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep shadowsocksr-libev-ssr-server | grep -v luci-app) -o shadowsocksr-libev-ssr-server.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep simple-obfs_) -o simple-obfs.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep ssocks_ | grep -v luci-app) -o ssocks.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep ssocksd | grep -v luci-app) -o ssocksd.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep tcping | grep -v luci-app) -o tcping.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep trojan-go_) -o trojan-go.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep trojan-plus_) -o trojan-plus.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep trojan_) -o trojan.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep v2ray-core | grep -v luci-app) -o v2ray-core.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep v2ray-plugin | grep -v luci-app) -o v2ray-plugin.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep xray-core | grep -v luci-app) -o xray-core.ipk
+curl https://op.supes.top/packages/x86_64/$(curl -L -s https://op.supes.top/packages/x86_64 | grep -oP '(?<=a href=").*(?=" title)' | grep xray-plugin | grep -v luci-app) -o xray-plugin.ipk
 opkg install *.ipk
 
 curl https://op.supes.top/packages/x86_64/luci-app-passwall_git-22.132.45013-7afe675_all.ipk -o /tmp/luci-passwall.ipk
