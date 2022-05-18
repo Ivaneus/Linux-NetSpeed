@@ -11,6 +11,7 @@ opkg install liblua5.1.5
 opkg install liblua5.3-5.3
 opkg install unzip
 opkg install wget
+opkg remove luci-app-passwall with --force-removal-of-dependent-packages
 rm -rf /tmp/yilai.zip
 rm -rf /tmp/yilai
 cd /tmp
