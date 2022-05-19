@@ -17,7 +17,7 @@ countryCode=$(curl -s "http://ip-api.com/line/${ipv4}?fields=countryCode")
 if [[ "$region" = "GB" ]]; then
    region="UK"
 fi
-whois=$(curl -s "https://www.whois.com/whois/185.215.226.127" | grep "country" | sed s/[[:space:]]//g | cut -f2 -d ":")
+whois=$(curl -s "https://www.whois.com/whois/${ipv4}" | grep "country" | sed s/[[:space:]]//g | cut -f2 -d ":")
 
 function Tiktok_Region_Checker(){
     echo  -e "${Font_SkyBlue} Welcome to using Tiktok Region Checker !${Font_Suffix}";
