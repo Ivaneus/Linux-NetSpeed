@@ -18,7 +18,7 @@ if [[ "$region" = "GB" ]]; then
    region="UK"
 fi
 
-whois=$(curl -4 --user-agent "${UA_Browser}" -s --max-time 10 -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9" -H "Accept-Encoding: gzip" -H "Accept-Language: en"  "https://www.whois.com/whois/${ipv4}" | gunzip 2> /dev/null | grep "country" | sed s/[[:space:]]//g | cut -f2 -d ":" | head -n 1)
+whois=$(curl -4 https://rdap.db.ripe.net/ip/$ipv4 | grep -oP '(?<=country" : ")(.*?)(?=",)')
 
 function Tiktok_Region_Checker(){
     echo  -e "${Font_SkyBlue} Welcome to using Tiktok Region Checker !${Font_Suffix}";
