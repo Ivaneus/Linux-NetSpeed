@@ -91,4 +91,4 @@ echo $useNIC
     fi
     
 }
-Tiktok_Region_Checker 4
+Tiktok_Region_Checker
