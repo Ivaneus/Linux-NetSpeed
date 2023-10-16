@@ -40,13 +40,13 @@ function Tiktok_Region_Checker(){
     echo  -e " Please Wait Patiently...";
 
     local Ftmpresult=$(curl -${1} --user-agent "${UA_Browser}" -s --max-time 10 "https://www.tiktok.com/")
-echo Ftmpresult
+    echo Ftmpresult
 	if [[ "$Ftmpresult" = "curl"* ]]; then
 		echo -e "\r Tiktok Region:\t\t${Font_Red}Failed (Network Connection Problem)${Font_Suffix}"
 		echo "Region check failed, Please ensure your network is up and try again!"	
 		echo -e "-----------------------------------------"
 		echo -e " Author: ${Font_Blue} ivaneus (Wechat ID)${Font_Suffix}";
-	     echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"	
+	        echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"	
 		return;
 	fi	
 	local FRegion=$(echo $Ftmpresult | grep '"region":"' | sed 's/.*"region//' | cut -f3 -d'"')
