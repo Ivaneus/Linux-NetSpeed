@@ -53,8 +53,8 @@ function Tiktok_Region_Checker(){
     echo  -e "-----------------------------------------";
     echo  -e "${Font_Yellow} Tiktok Region Checking${Font_Suffix}";
     echo  -e " Please Wait Patiently...";
-
-    local Ftmpresult=$(curl -${1} --user-agent "${UA_Browser}" -s --max-time 10 "https://www.tiktok.com/")
+echo $useNIC
+    local Ftmpresult=$(curl $useNIC --user-agent "${UA_Browser}" -s --max-time 10 "https://www.tiktok.com/")
     echo $Ftmpresult
 	if [[ "$Ftmpresult" = "curl"* ]]; then
 		echo -e "\r Tiktok Region:\t\t${Font_Red}Failed (Network Connection Problem)${Font_Suffix}"
