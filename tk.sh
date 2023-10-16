@@ -61,7 +61,7 @@ echo $useNIC
 	        echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"	
 		return;
 	fi	
-	local FRegion=$(echo $Ftmpresult | grep '"region":"' | sed 's/.*"region//' | cut -f3 -d'"')
+	local FRegion=$(echo $Ftmpresult | grep '"region":' | sed 's/.*"region"//' | cut -f2 -d'"')
     if [[ "$FRegion" = "GB" ]]; then
        FRegion="UK"
     fi
@@ -71,22 +71,23 @@ echo $useNIC
         echo -e " Author: ${Font_Blue} ivaneus (Wechat ID)${Font_Suffix}";               
         echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"
         return;
-	fi
-	local STmpresult=$(curl -${1} --user-agent "${UA_Browser}" -s --max-time 10 -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9" -H "Accept-Encoding: gzip" -H "Accept-Language: en"  "https://www.tiktok.com/" | gunzip 2> /dev/null)
-	local SRegion=$(echo $STmpresult | grep '"region":"' | sed 's/.*"region//' | cut -f3 -d'"')
-	if [ -n "$SRegion" ];then
+    fi
+    
+	local STmpresult=$(curl $useNIC --user-agent "${UA_Browser}" -sL --max-time 10 -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9" -H "Accept-Encoding: gzip" -H "Accept-Language: en" "https://www.tiktok.com" | gunzip 2>/dev/null)
+	local SRegion=$(echo $STmpresult | grep '"region":' | sed 's/.*"region"//' | cut -f2 -d'"')
+    if [ -n "$SRegion" ];then
         echo -e "\r Tiktok Region:\t${Font_Yellow}${SRegion} (Possible Already Abused)${Font_Suffix}"
         echo -e "-----------------------------------------"
         echo -e " Author: ${Font_Blue} ivaneus (Wechat ID)${Font_Suffix}";
         echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"
         return;
-	else	
-		echo -n -e "\r Tiktok Region:\t\t${Font_Red}Failed(Tiktok Block/Unrecognized Your IP )${Font_Suffix}"
-		echo " Region check failed, Please ensure your network is up and try again!"
-		echo -e "-----------------------------------------"
-		echo -e " Author: ${Font_Blue} ivaneus (Wechat ID)${Font_Suffix}";
-		echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"	
-		return;
+    else	
+	echo -n -e "\r Tiktok Region:\t\t${Font_Red}Failed(Tiktok Block/Unrecognized Your IP )${Font_Suffix}"
+	echo " Region check failed, Please ensure your network is up and try again!"
+	echo -e "-----------------------------------------"
+	echo -e " Author: ${Font_Blue} ivaneus (Wechat ID)${Font_Suffix}";
+	echo -e "${Font_SkyBlue} If you need any service of tiktok, please contact author!${Font_Suffix}"	
+	return;
     fi
     
 }
