@@ -24,16 +24,13 @@ if [ -z "$iface" ]; then
     useNIC=""
 fi
 UA_Browser="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
-ipv4=$(curl -s "http://api4.ipify.org")
-country=$(curl -s "http://ip-api.com/line/${ipv4}?fields=country")
-city=$(curl -s "http://ip-api.com/line/${ipv4}?fields=city")
-isp=$(curl -s "http://ip-api.com/line/${ipv4}?fields=isp")
-countryCode=$(curl -s "http://ip-api.com/line/${ipv4}?fields=countryCode")
-if [[ "$region" = "GB" ]]; then
-   region="UK"
-fi
+ipv4=$(curl $useNIC -s "http://api4.ipify.org")
+country=$(curl $useNIC -s "http://ip-api.com/line/${ipv4}?fields=country")
+city=$(curl $useNIC -s "http://ip-api.com/line/${ipv4}?fields=city")
+isp=$(curl $useNIC -s "http://ip-api.com/line/${ipv4}?fields=isp")
+countryCode=$(curl $useNIC -s "http://ip-api.com/line/${ipv4}?fields=countryCode")
 
-whois=$(curl -4 https://rdap.db.ripe.net/ip/$ipv4 | grep -oP '(?<=country" : ")(.*?)(?=",)')
+whois=$(curl $useNIC -4 https://rdap.db.ripe.net/ip/$ipv4 | grep -oP '(?<=country" : ")(.*?)(?=",)')
 
 function Tiktok_Region_Checker(){
     echo  -e "${Font_SkyBlue} Welcome to using Tiktok Region Checker !${Font_Suffix}";
