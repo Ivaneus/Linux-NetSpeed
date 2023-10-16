@@ -7,7 +7,22 @@ Font_Purple="\033[35m"
 Font_SkyBlue="\033[36m"
 Font_White="\033[37m"
 Font_Suffix="\033[0m"
+while getopts ":I:" optname; do
+    case "$optname" in
+    "I")
+        iface="$OPTARG"
+        useNIC="--interface $iface"
+        ;;
+    ":")
+        echo "Unknown error while processing options"
+        exit 1
+        ;;
+    esac
 
+done
+if [ -z "$iface" ]; then
+    useNIC=""
+fi
 UA_Browser="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36"
 ipv4=$(curl -s "http://api4.ipify.org")
 country=$(curl -s "http://ip-api.com/line/${ipv4}?fields=country")
